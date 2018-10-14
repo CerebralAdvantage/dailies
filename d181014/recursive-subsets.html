@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            function ssr(word, arr, retarr)
+            {
+                if(word==="") retarr.push("\"\"");
+                if(arr != [])
+                    for(let i = 0; i < arr.length; i++)
+                    {
+                        retarr.push(word + arr[i]);
+                        ssr(word + arr[i], arr.slice(i+1), retarr);
+                    }
+            }
+            function subsets(searchstring)
+            {
+                let array = searchstring.split("");
+                let retarray = [];
+                ssr("", array, retarray);
+                return retarray;
+            }
+            function main()
+            {
+                let subs = subsets("abcde");
+                for(let i = 0; i < subs.length; i++)
+                    console.log(subs[i]);
+                console.log("---------------------------" + subs.length);
+            }
+            window.onload = main;
+/*
+
+//top level
+""
+
+//first iterative loop
+a
+ab // recursion....
+abc // recursion
+abcd // recursion
+abcde // recursion (trivial case is next - ends)
+abce
+abd
+abde
+abe
+ac
+acd
+acde
+ace
+ad
+ade
+ae
+
+//second iterative loop
+b
+bc
+bcd
+bcde
+bce
+bd
+bde
+be
+
+//third iterative loop
+c
+cd
+cde
+ce
+
+//fourth iterative loop
+d
+de
+
+//fifth iterative loop
+e
+
+---------------------------32
+
+
+original output
+
+""
+a
+ab
+abc
+abcd
+abcde
+abce
+abd
+abde
+abe
+ac
+acd
+acde
+ace
+ad
+ade
+ae
+b
+bc
+bcd
+bcde
+bce
+bd
+bde
+be
+c
+cd
+cde
+ce
+d
+de
+e
+---------------------------32
+
+*/
+        </script>
+    </body>
+</html>

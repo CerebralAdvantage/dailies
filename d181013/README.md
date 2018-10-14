@@ -21,6 +21,7 @@ Can we fix it?  Today?  Wanna say, "heck yeah."
 Guess there's more than one broken widow with the
 git UI.
 
+```
 cd dailies
 md new daily dir
 nano new daily file
@@ -30,3 +31,4 @@ git add . adds everything
 git status shows full path of added dir & file
 
 ...
+```
