@@ -12,4 +12,4 @@ The idea is that you have a array of random numbers
 and you want to find 3 numbers within the array
 whose sum is closest to a random target value.
 
-
+My goal was to transcend the average optimizations.
