@@ -16,7 +16,7 @@ function init()
   // Second, find the "sweet spot" (in this case, target/3)
   let sspot = Math.trunc(target/3); // calc sweet spot
 
-  // find it using what I call "Sorted Random List Search"
+  // find it using what I call "Sorted Random List Search" very close to "interpolation search"
   let rstep = Math.trunc((maxval-minval)/arraySize); // given a reasonably even distribution...
   let guess = Math.trunc(sspot / rstep); // pretty good first guess
   let guess2 = guess + Math.trunc((sspot-arr[guess]) / rstep); // even better second guess
