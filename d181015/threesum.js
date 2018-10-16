@@ -31,6 +31,9 @@ function init()
   if(Math.abs(sspot-arr[finalguess-1])<Math.abs(sspot-arr[finalguess])) guessx = finalguess-1;
   if(Math.abs(arr[finalguess+1]-sspot)<Math.abs(sspot-arr[guessx])) guessx = finalguess+1;
 
+  // Step 3 is to do a "simple extension search" from that center, until you hit it square, And if
+  // you have a lot of values, you will probably quickly find 3 values that add up to your target
+
   let donetime = Date.now();
 
   console.log("total time = ", donetime-start, "milliseconds.");
