@@ -51,11 +51,8 @@ function find()
       finalguess = guess3;
       if (checkguess(sspot, guess3) != 0) // if we get this far, it's horrible...
       {
-console.log("it was horrible...");
-let tot = 0;
-        while(arr[finalguess]>sspot) {finalguess--; tot++;} // why so stupid?
-        while(arr[finalguess]<sspot) {finalguess++; tot++;} // because I'm LAZY, that's why! :-)
-console.log(tot, "extra tries");
+        while(arr[finalguess]>sspot) finalguess--; // why so stupid?
+        while(arr[finalguess]<sspot) finalguess++; // because I'm LAZY, that's why! :-)
       } // guess3
     } // guess2
   } // guess
@@ -67,7 +64,7 @@ console.log(tot, "extra tries");
     if(Math.abs(sspot-arr[finalguess-1])<Math.abs(sspot-arr[guessx])) guessx = finalguess-1;
     if(Math.abs(sspot-arr[finalguess+1])<Math.abs(sspot-arr[guessx])) guessx = finalguess+1;
   }
-else console.log("GOT IT IN 3 OR LESS!")
+
   console.log("BEST guess =", guessx, arr[guessx],"\n\n");
   for(i=guessx-5;i<guessx+5;i++) console.log(i, arr[i]);
 
