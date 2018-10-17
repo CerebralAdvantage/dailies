@@ -1,5 +1,5 @@
 //const arraySize = 1000000;
-const arraySize = 1000;
+const arraySize = 300;
 const minval = 0;
 //const maxval =    10000000;
 const maxval =    1000;
