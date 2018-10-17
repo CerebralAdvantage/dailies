@@ -27,14 +27,16 @@ function checkguess(target, guess)
 function find()
 {
   let i=0, finalguess = 0;
+  console.log("target =", target);
+
   // OK.  So what's the big deal...  3 steps.  First, sort the list O = n(log n)
   let start = Date.now();
   arr.sort(function(a,z){ return a-z; });
+  let lapse = Date.now();
+  console.log("Time to sort list: ", lapse-start, "milliseconds.");
 
   // Second, find the "sweet spot" (in this case, target/3)
   let sspot = Math.trunc(target/3); // calc sweet spot
-
-  console.log("target =", target);
   console.log("sweet spot =", sspot);
 
   // find it using what I call "Sorted Random List Search" somewhat close to "interpolation search"
@@ -73,7 +75,7 @@ function find()
 
 
   let donetime = Date.now();
-
+  console.log("Time to find sum values:", donetime-lapse, "milliseconds.");
   console.log("total time = ", donetime-start, "milliseconds.");
 
 
