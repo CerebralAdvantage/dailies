@@ -1,8 +1,12 @@
-const arraySize = 10000;
+//const arraySize = 1000000;
+const arraySize = 1000;
 const minval = 0;
-const maxval =    10000000;
-const mintarget =  5000000;
-const maxtarget = 15000000;
+//const maxval =    10000000;
+const maxval =    1000;
+//const mintarget =  5000000;
+//const maxtarget = 15000000;
+const mintarget =  300;
+const maxtarget = 400;
 let arr = [];
 
 function init()
@@ -13,6 +17,7 @@ function init()
   // OK.  So what's the big deal...  3 steps.  First, sort the list O = n(log n)
   let start = Date.now();
   arr.sort(function(a,z){ return a-z; });
+
   // Second, find the "sweet spot" (in this case, target/3)
   let sspot = Math.trunc(target/3); // calc sweet spot
 
@@ -28,11 +33,12 @@ function init()
   while(arr[finalguess]<sspot) finalguess++; // because I'm LAZY, that's why! :-)
   // while technically correct, we can quickly do better
   let guessx = finalguess;
-  if(Math.abs(sspot-arr[finalguess-1])<Math.abs(sspot-arr[finalguess])) guessx = finalguess-1;
-  if(Math.abs(arr[finalguess+1]-sspot)<Math.abs(sspot-arr[guessx])) guessx = finalguess+1;
+  if(Math.abs(sspot-arr[finalguess-1])<Math.abs(sspot-arr[guessx])) guessx = finalguess-1;
+  if(Math.abs(sspot-arr[finalguess+1])<Math.abs(sspot-arr[guessx])) guessx = finalguess+1;
 
   // Step 3 is to do a "simple extension search" from that center, until you hit it square, And if
   // you have a lot of values, you will probably quickly find 3 values that add up to your target
+
 
   let donetime = Date.now();
 
@@ -47,7 +53,13 @@ function init()
   for(i=guess3-3;i<guess3+3;i++) console.log(i, arr[i]);
   console.log("final guess =", finalguess);
   for(i=finalguess-1;i<finalguess+2;i++) console.log(i, arr[i]);
-  console.log("BEST guess =", guessx, arr[guessx]);
+  console.log("BEST guess =", guessx, arr[guessx],"\n\n");
+  for(i=guessx-10;i<guessx+12;i++) console.log(i, arr[i]);
+
+  //just for laughs, let's see how close we are!
+  console.log(target, "target");
+  console.log(arr[guessx-1] + arr[guessx] + arr[guessx+1], "virgin guess");
+
 }
 
 init();
