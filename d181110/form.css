@@ -1,0 +1,10 @@
+      *{ position: absolute; }
+   body{ margin: 0px; padding: 0px; }
+
+.square{ height: 100px; width: 100px; }
+
+#one{ top:  50px; left:  50px; border: 2px solid red; }
+#two{ top: 200px; left: 100px; border: 2px solid blue; }
+#tre{ top:  50px; left:  75px; border: 2px solid green; line-height: 100px; text-align: center;
+		height: 100px; width: 100px; } /* background-color:#AADDAA; } */
+
