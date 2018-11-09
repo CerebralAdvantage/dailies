@@ -1,4 +1,5 @@
 # Fizz of Eratosthenes
+#### Author: James R. Huddle  (... and Eratosthenes!)
 
 This unique twist on the old fizzbuzz algorithm employes the old
 sieve of Eratosthenes algorithm for a truly amusing take on a
