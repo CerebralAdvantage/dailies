@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Moove that square!</title>
+		<link rel="stylesheet" type="text/css" href="form.css">
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="obj-wrapper">
+				<div class="square" id="one"></div>
+				<div class="square" id="two"></div>
+				<div class="square" id="tre">justice</div>
+			</div> <!-- obj-wrapper -->
+		</div> <!-- wrapper -->
+		<script>
+			let g = document.getElementById("tre");
+			var myvar;
+			var pos = 25;
+			let w = document.getElementById("wrapper");
+			let ow = document.getElementById("obj-wrapper");
+			function move()
+			{
+				g.style.top = pos + 'px';
+				if(pos == 75) clearInterval(myvar); // exit
+				pos++;
+			}
+			//console.log("Hello ", w.style.width, " world!");
+			ow.style.left = '200px'; //= (w.style.width - ow.style.width)/2;
+			myvar = setInterval(move, 10);
+
+/*
+from the w3schools website
+https://www.w3schools.com/js/js_htmldom_animate.asp
+
+function myMove() {
+    var elem = document.getElementById("animate");
+    var pos = 0;
+    var id = setInterval(frame, 5);
+    function frame() {
+        if (pos == 350) {
+            clearInterval(id);
+        } else {
+            pos++;
+            elem.style.top = pos + 'px';
+            elem.style.left = pos + 'px';
+        }
+    }
+} 
+if we use "let" instead of var, things get very nicely scoped.
+By that I mean that frame seems encapsulated by myMove,
+id seems local to myMove, manipulations of pos and id AND elem!!!
+are all local to myMove
+I'm guessing that ALL those variable and function names can be used
+globally without affecting anything inside myMove (or frame!)
+
+watch this space...
+*/
+		</script>
+	</body>
+</html>
