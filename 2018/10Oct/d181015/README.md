@@ -15,4 +15,4 @@ whose sum is closest to a random target value.
 My goal was to transcend the average optimizations.
 
 It was only later that I... discovered... that this exact type 
-of problem was in the P v NP purview.  Go figure.
+of problem was in the P v NP purview.  Go figure!
