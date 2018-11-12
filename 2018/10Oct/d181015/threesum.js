@@ -118,7 +118,7 @@ find();
 
 //   console.log("final guess was =", finalguess);
 //   for(i=finalguess-1;i<finalguess+2;i++) console.log(i, arr[i]);
-  // while technically correct, we can quickly do better
+  // while technically correct, we can quickly do better...
   let guessx = finalguess;
   if (arr[guessx] != sspot)
   {
