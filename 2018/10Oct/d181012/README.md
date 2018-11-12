@@ -27,6 +27,6 @@ for(i=1;i<=100;i++)                            // this just logs everything out
   if (arr[i] == 5) console.log("buzz");        // only non-three multiples of 5
   if (arr[i] == 15) console.log("fizzbuzz");   // multiples of 3 and 5
 }
-// In the spirit of Eratosthenes, no / or % was used!
+// In the spirit of Eratosthenes, no / or % was used!!
 
 ```
