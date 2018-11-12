@@ -1,4 +1,4 @@
-// buzz of Eratosthenes   neither / nor % is used!
+// buzz of Eratosthenes   neither / nor % nor if statements are used!
 let i=0, arr=[];
 for(i=1;i<=100;i+=1) arr[i] =  i;         // initially, arr[1] = 1, arr[2] = 2...
 for(i=5;i<=100;i+=5) arr[i] =  "";        // prepopulate all multiples of 5 with ""
