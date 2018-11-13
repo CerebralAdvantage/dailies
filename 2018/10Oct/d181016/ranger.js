@@ -1,3 +1,4 @@
+// inspired by the ancient BASIC program, ranger.bas
 function ranger(angle, speed)
 {
   let upspeed = Math.sin((3.1415926536/180) * angle) * speed;
