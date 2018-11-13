@@ -13,23 +13,26 @@ const html = "" +
 "		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
 "		<meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n" +
 "		<title>Document</title>\n" +
-//"		<script src=\"test.js\"></script>\n" +
+"		<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n" +
 "	</head>\n" +
 "	<body>\n" +
-"		<h1>HELLO, WORLD!</h1>\n" +
-"		<script> require(\"./test.js\")\n" +
-"				document.write(\"hi there<br>\");\n" +
-"				document.write(testwrite());\n" +
-"				document.write(\"hi there2<br>\"); </script>\n" +
+"		<div id=\"bs\"></div>\n" +
 "	</body>\n" +
 "</html>\n";
+
+const css = "" +
+"*{ position: absolute; }\n" + 
+"body{ margin: 0px; padding: 0px; }\n" +
+"#bs { height: 100px; width: 100px; left: 300px; top: 150px; background-color: #33F; }\n";
 
 // The server should repsond to all requests with a string
 const server = http.createServer(function(req, res){
 
-	// send a text response
-	//res.end("Hello, world!\n");
-	res.end(html);
+	if(req.url == '/')
+		res.end(html);
+
+	if(req.url == '/style.css')
+		res.end(css);			// Take THAT, fs!
 
 });
 
