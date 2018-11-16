@@ -17,23 +17,23 @@ function rotateArray(arr, rot)
 	{
 		if (rot < 0) neg = true;
 		rot = Math.abs(rot);	// if rot < 0...
-		rot = rot % len;		// if rot > len...
+		rot = rot % len;	// if rot > len...
 		let d = gcd(len,rot);	// keep your eye on d!  (It's the greatest common d!)
 		// if the rotation is prime to the array length, d is 1
 		if (!neg)	// (maybe we'll do negative values later
 		{
-			for(i=0;i<d;i++) // plodding loop - crawls 1-at-a-time (if at all!)
-			{				 // *************
-				hop = i;				// hop starts at zero... or, you know... 1, 2, 3...
-				tmp = arr[hop];			// this is the "latent" half of the swap, below
+			for(i=0;i<d;i++)	// plodding loop - crawls 1-at-a-time (if at all!)
+			{			// *************
+				hop = i;		// hop starts at zero... or, you know... 1, 2, 3...
+				tmp = arr[hop];		// this is the "latent" half of the swap, below
 				for(j=0;j<len/d; j++)	// hopping loop - hops rot-at-a-time, wrapping if needed
-				{						// ************
+				{			// ************
 					hop2 = (hop+rot)%len;	// hop2 hops forward by rot (and wraps, if needed)
-					tmp2 = tmp;				// save the old tmp for next iteration
-					tmp = arr[hop2];		// save forward array value
-					arr[hop2] = tmp2;		// overwrite (swap) it with prev fwd value
-					hop = hop2;				// now hop moves forward by rot (to meet hop2)
-					//count++;				// 10M array items? ANY rot takes 10M steps!
+					tmp2 = tmp;		// save the old tmp for next iteration
+					tmp = arr[hop2];	// save forward array value
+					arr[hop2] = tmp2;	// overwrite (swap) it with prev fwd value
+					hop = hop2;		// now hop moves forward by rot (to meet hop2)
+					//count++;		// 10M array items? ANY rot takes 10M steps!
 				} // hopping loop (do only len/d times)
 			} // plodding loop (do only d times)
 		} // if (!neg)
