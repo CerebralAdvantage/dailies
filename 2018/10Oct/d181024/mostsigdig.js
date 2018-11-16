@@ -1,12 +1,12 @@
 function MSD(num)
 {
-	num = Math.abs(num);				// "preprocesses" all negative numbers
-	if (num != 0)						// handles zero
+	num = Math.abs(num);			// "preprocesses" all negative numbers
+	if (num != 0)				// handles zero
 	{
-		while (num < 1) num *= 10;		// "fixes" all small decimals, like 0.000000031415
+		while (num < 1) num *= 10;	// "fixes" all small decimals, like 0.000000031415
 		while (num >= 10) num /= 10;	// "downsizes" all numbers larger than 9.999999...
 	}
-	return Math.trunc(num);				// "cleans up" the reality to the right of the decimal
+	return Math.trunc(num);			// "cleans up" the reality to the right of the decimal
 } // MSD()
 
 
