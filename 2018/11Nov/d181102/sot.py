@@ -25,7 +25,7 @@ def sot():
 		b = across
 	print a
 	print b
-	print b/a  #sadly, this only ever prints "1"
+	print b/a  #sadly, this only ever prints "1"...
 
 sot()
 
