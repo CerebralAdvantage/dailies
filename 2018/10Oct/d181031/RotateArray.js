@@ -4,7 +4,7 @@
 //
 // Rotate any array of any size, in either direction, in place
 // OK.  maybe not in either direction, but in O (n) time.  Every time.
-// And only using 2 storage variables!
+// And only using 2 storage variables!  Good luck doing better!
 
 let gcd = function(a,b) { return (!b)?a:gcd(b,a%b); }; // https://stackoverflow.com/questions/17445231/js-how-to-find-the-greatest-common-divisor
 
