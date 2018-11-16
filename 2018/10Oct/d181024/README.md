@@ -15,4 +15,4 @@ tried to track him down!)
 
 Second: handle negative num values as well, doing what you think is appropriate. "
 
-As a personal note, I didn't *use* the friendly modulus operator ( % ), even though usually it's a fave!
+As a note, I didn't *use* the friendly modulus operator ( % ), even though usually it's a personal fave!
