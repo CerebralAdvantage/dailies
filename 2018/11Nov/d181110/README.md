@@ -4,6 +4,3 @@
 
  This little animation is about working with css, moving things (when apropos)
  and playing with animation -- a little.... in css....
-
-I guess this might be a good time to shout out to Rush...
-
