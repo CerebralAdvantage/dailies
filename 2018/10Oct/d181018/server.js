@@ -10,8 +10,6 @@ const html = "" +
 "<html lang=\"en\">\n" +
 "	<head>\n" +
 "		<meta charset=\"UTF-8\">\n" +
-"		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-"		<meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n" +
 "		<title>Document</title>\n" +
 "		<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n" +
 "	</head>\n" +
@@ -29,15 +27,14 @@ const css = "" +
 const server = http.createServer(function(req, res){
 
 	if(req.url == '/')
+//		res.writeHead(200, {'Content-Type': 'text/html'}); // not so much
 		res.end(html);
 
 	if(req.url == '/style.css')
+		res.writeHead(200, {'Content-type' : 'text/css'});
 		res.end(css);			// Take THAT, fs!
-
 });
 
-
-// Start the server and have it listen on port 3000
-server.listen(3000, function(){
+server.listen(3000, function(){ // Start the server and have it listen on port 3000
 	console.log("Server01 is listening on port 3000 now.");
 });
