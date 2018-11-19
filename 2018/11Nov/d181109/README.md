@@ -1,5 +1,5 @@
 # CSS
-### fake form
+### Form Follows Form
 
- This is a stab at recreating the "visual" of a form.  It's better than nothing.
+ Recreating the "visual" of a form.  This is the design only.
 
