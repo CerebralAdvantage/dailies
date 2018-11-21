@@ -1,0 +1,92 @@
+// This is my breakdown of some code I found on the web by Googling "Sieve of Sundaram"
+// I'm really just trying to wrap my head around it!
+
+
+function sieve_dog(n) {
+    // create blank sieve
+    var sieve = new Array();
+    for (var i = 0; i < n; i++) {
+        sieve.push(1);
+    }
+//understood.  Array (2x req'd size) now has all ones
+
+
+// WHAT IS THIS?
+    for (var i = 1; i <= n; i++) {
+        for (var j = i; (i + j + 2*i*j) < n && i <= j; j++) {
+            sieve[i + j + 2*i*j] = 0;
+        }
+    }
+
+    for (var i = 1; i <= n; i++) { // i is stepping through EACH VALUE
+
+        for (
+		var j = i; // j starts at i
+		(i + j + 2*i*j) < n && i <= j; 
+		j++) //j increments ONE
+	 {
+            sieve[i + j + 2*i*j] = 0; 
+// I kind of get i + j  + 2*i*j...
+// and, side effects nonwithstanding, i should equal 1,2,3,4,5... to n
+// what does j = ???
+        } 
+
+    }
+
+so.  i plods along
+j starts at i and plods along as well.
+when i+j+2*i*j >= n, we're done with the inner loop
+it looks like that goes faster and faster
+
+ij
+  1  2  3  4  5  6
+1 4  7  10 13 ...
+2 -  12 17 ......
+3 -  -  24 31  ...
+4 -  -  -  40 49 ..
+5 -  -  -  -  60 71
+6 -  -  -  -  -  84  so, going to n (say 100) would be ridiculous.  You essentially want to go to the sq rt of 50
+not n-2 /2, 
+but n/2 ** 0.5
+
+
+// And this is the (albeit jqueried) output.  Got it.
+    for (var i = 1; i < n; i++) {
+        if (sieve[i])
+            $(".blah").append(i * 2 + 1 + " ");
+    }
+}
+
+sieve_dog(10000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function sieve_dog(n) {
+    // create blank sieve
+    var sieve = new Array();
+    for (var i = 0; i < n; i++) {
+        sieve.push(1);
+    }
+    for (var i = 1; i <= n; i++) {
+        for (var j = i; (i + j + 2*i*j) < n && i <= j; j++) {
+            sieve[i + j + 2*i*j] = 0;
+        }
+    }
+    for (var i = 1; i < n; i++) {
+        if (sieve[i])
+            $(".blah").append(i * 2 + 1 + " ");
+    }
+}
+
+sieve_dog(10000);
