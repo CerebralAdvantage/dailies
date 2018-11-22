@@ -10,13 +10,14 @@
  * 50,000,001,000,000 (fifty trillion, one million).  Not much of a sentence, but, you know...
  */
 
+unsigned long long int target, primes[1000000];
 int main(int argc, char **argv)
 {
-	int i, next;
-	unsigned char *smallsieve;
-	unsigned long long int target, primes[1000000];
+	int i,j, next;
+	unsigned char *smallsieve, sieve[1000000];
 	long double sqt;
-	unsigned int isqt, psqt, count;
+	unsigned int isqt, psqt, count, fcount, *sprimes, z, start;
+	// the terms "smallsieve" and "sprimes" refers to their small bit-size (32-bit)
 
 	// input target (we convert a command line arg to an unsigned long long int
 	if(argc < 2)
@@ -25,7 +26,7 @@ int main(int argc, char **argv)
 	{
 		if (strlen(argv[1]) > 19)
 			printf("Please use a number between 1 and 9,000,000,000,000,000,000\n");
-		else
+		else	//                         actually: 18,446,744,073,709,551,615 (2^64-1)
 		{
 			target = strtoull(argv[1], NULL, 0);
 			// calc sq root of target + 1000000.
@@ -49,30 +50,43 @@ int main(int argc, char **argv)
 			{
 				while(!smallsieve[++next]); // find next prime (keep looping while p[++next] is 0)
 				// Now, "sift out" multiples of the prime, starting at prime squared
-				for(i=next*next; i<sqt; i+=next) smallsieve[i] = 0; // that's the entire sieve algorithm
+				for(i=next*next; i<isqt; i+=next) smallsieve[i] = 0; // that's the entire sieve algorithm
 			}
 			// count local primes (could be 4 billion!)
-			for(i=0,next=0; next < sqt; next++) if(smallsieve[next] == 1) i++;
-			count = i-1;
-			printf("sieve requires: %u primes\n", count); 
-			//for(i=0,next=0; next < 32768; next++) if(p[next] == 1) primes[i++] = next; 
+			for(i=0,next=0; next < isqt; next++) if(smallsieve[next] == 1) i++;
+			count = i;
+			printf("sieve requires: %u primes\n", count);
+			sprimes = (unsigned int *)malloc(count * sizeof(unsigned int));
+			for(i=0,next=0; next < isqt; next++) if(smallsieve[next] == 1) sprimes[i++] = next; 
+			// so... that was the legwork.  Here is where the magic happens...
+			// count is the number of primes that we need to check
+			// sieve is the place where we'll narrow down our selection of one million candidates.
+			// the candidates, themselves, start with target and go to target+1,000,000
 
-		}
-		if (0) // i.e. skip this part
-		{
-			printf("Number of times through the main loop (number of primes < 32768) is %d\n",i-1);
-			// THAT number is 3511.  3511 primes less than 32768.  3511 times through the big loop!
-			// Even with this added task, it ran in 27.4 seconds
-			for(next=0;next<i;next++)
+			for(i=0; i<	1000000; i++) sieve[i] = 1; // first, populate an array with 1's...
+
+			next = 0;
+			for(i=0; i<	count; i++) // so, if we're testing 52000000 primes, this loop goes 52000000 times
+			{
+				// we have our collection of primes to test, starting with sprimes[0]
+				start = 0;
+				z = target % sprimes[i]; // this is the remainder from dividing our target by the next prime
+				if (z !=0)
+					start = sprimes[i] - z; // THIS tells us where to start sifting out multiples of sprimes[i]
+				// Now we "sift out" multiples of sprimes[i], starting at sieve[start]
+				// keep in mind, start could be 3,000,000,001, which is outside of our million-item array bounds
+				if(start<1000000) for(j=start; j<1000000; j+=sprimes[i]) sieve[j] = 0;
+			}
+			// this is where we "recreate" the primes from the 1's and 0's of our sieve
+			for(i=0,next=0; next < 1000000; next++) if(sieve[next] == 1) primes[i++] = target+next;
+			fcount = i;
+			for(next=0;next<fcount;next++)
 			{
 				printf("%llu ",primes[next]);
-				if((next+1)%16 == 0) printf("\n");
+				if((next+1)%4 == 0) printf("\n");
 			}
-			printf("\n");
-		}
-	}
-
+		} // valid target size
+	} // target exists
 	return 0;
 }
-
 
