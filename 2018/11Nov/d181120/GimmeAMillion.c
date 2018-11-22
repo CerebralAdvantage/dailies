@@ -1,57 +1,77 @@
-#include <stdio.h>
+#include <stdio.h> // printf()
+#include <string.h> // strlen()
+#include <stdlib.h> // strtoull()
+#include <math.h> // sqrtl()
+#include <malloc.h> // malloc()
 
-// this is a billion (2^30) for a reason.  Run it - see how long it takes!
-#define HOWBIG 3000000000
-// ROOT is the square root of our target (HOWBIG)
-#define ROOT 54773
+/* This is a two-part, modified Sieve of Eratosthenes, used for sifting through a large swath
+ * of numbers that exist a super long way away from zero.  So finding all of the prime numbers
+ * in a swath of (let's say) a million numbers from 50,000,000,000,000 (fifty trillion) to
+ * 50,000,001,000,000 (fifty trillion, one million).  Not much of a sentence, but, you know...
+ */
 
-unsigned char p[HOWBIG]; // This is just a maximum
-
-// You often see "The Sieve" in computer benchmarks.  It can "busy" a system!
-// But I have found that it is MUCH faster than any other prime generator, for primes
-// as large as 100 quadrillion.
-
-//32,416,190,071
-//32,416,187,567 
-//34,359,738,368
-
-int main()
+int main(int argc, char **argv)
 {
-	int i, next, primes[100000];
-	unsigned long long int target;
+	int i, next;
+	unsigned char *smallsieve;
+	unsigned long long int target, primes[1000000];
+	long double sqt;
+	unsigned int isqt, psqt, count;
 
-// input target
-// calc sq root of target + 1.  make that maxsq
-// fill sieve with 1's to maxsq
-// calc sq of maxsq + 1.  make that sqsq
-// sift using sqsq and maxsq to get "a bunch of" primes
-// use the "bunch of" sieved primes to sift target swath.
-// return remaining (guaranteed, btw) primes from target swath
-	
-	// first, populate an array with 1's...
-	for(i=0; i<	HOWBIG; i++) p[i] = 1;
-
-	p[0] = 0; p[1] = 0; // These two aren't prime
-	// After taking care of zero and one, you look for the next value in the huge array that
-	// is equal to 1.  That would be p[2].  Turns out, 2 is the first prime!
-	next = 0;
-	while(next < ROOT+1) // just like using % to test for even divisibility, we only need ROOT tests
+	// input target (we convert a command line arg to an unsigned long long int
+	if(argc < 2)
+		printf("Usage: %s <number-to-test>\n",argv[0]);
+	else
 	{
-		while(!p[++next]); // find next prime (keep looping while p[++next] is 0)
-		// Now, "sift out" multiples of the prime, starting at prime squared
-		for(i=next*next; i<HOWBIG; i+=next) p[i] = 0; // that's the entire sieve algorithm
+		if (strlen(argv[1]) > 19)
+			printf("Please use a number between 1 and 9,000,000,000,000,000,000\n");
+		else
+		{
+			target = strtoull(argv[1], NULL, 0);
+			// calc sq root of target + 1000000.
+			sqt = sqrtl((long double)(target+1000000));
+			sqt += 1.0L;
+			// make that isqt
+			isqt = (unsigned int)sqt;
+			// This is the number of primes we need to test to confirm primality
+			// And take the square root of THAT (psqt)
+			psqt = (unsigned int)sqrt(sqt);
+			psqt += 10; // just padding things a little
+			printf("Your prize is $%u!!!\n",psqt);
+			// That's how many primes we need to make sure that that larger group is prime!
+
+			smallsieve = (unsigned char*)malloc(sqt);
+			for(i=0; i<	sqt; i++) smallsieve[i] = 1; // first, populate an array with 1's...
+
+			smallsieve[0] = 0; smallsieve[1] = 0; // These two aren't prime
+			next = 0;
+			while(next < psqt+1)
+			{
+				while(!smallsieve[++next]); // find next prime (keep looping while p[++next] is 0)
+				// Now, "sift out" multiples of the prime, starting at prime squared
+				for(i=next*next; i<sqt; i+=next) smallsieve[i] = 0; // that's the entire sieve algorithm
+			}
+			// count local primes (could be 4 billion!)
+			for(i=0,next=0; next < sqt; next++) if(smallsieve[next] == 1) i++;
+			count = i-1;
+			printf("sieve requires: %u primes\n", count); 
+			//for(i=0,next=0; next < 32768; next++) if(p[next] == 1) primes[i++] = next; 
+
+		}
+		if (0) // i.e. skip this part
+		{
+			printf("Number of times through the main loop (number of primes < 32768) is %d\n",i-1);
+			// THAT number is 3511.  3511 primes less than 32768.  3511 times through the big loop!
+			// Even with this added task, it ran in 27.4 seconds
+			for(next=0;next<i;next++)
+			{
+				printf("%llu ",primes[next]);
+				if((next+1)%16 == 0) printf("\n");
+			}
+			printf("\n");
+		}
 	}
 
-	for(i=0,next=0; next < 32768; next++) if(p[next] == 1) primes[i++] = next; 
-	printf("Number of times through the main loop (number of primes < 32768) is %d\n",i-1);
-	// THAT number is 3511.  3511 primes less than 32768.  3511 times through the big loop!
-	// Even with this added task, it ran in 27.4 seconds
-	for(next=0;next<i;next++)
-	{
-		printf("%d ",primes[next]);
-		if((next+1)%16 == 0) printf("\n");
-	}
-	printf("\n");
 	return 0;
 }
 
