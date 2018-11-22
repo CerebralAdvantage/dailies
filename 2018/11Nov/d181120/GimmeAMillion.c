@@ -8,6 +8,8 @@
  * of numbers that exist a super long way away from zero.  So finding all of the prime numbers
  * in a swath of (let's say) a million numbers from 50,000,000,000,000 (fifty trillion) to
  * 50,000,001,000,000 (fifty trillion, one million).  Not much of a sentence, but, you know...
+ * 
+ * btw 50 trillion takes about 0.295 seconds to generate
  */
 
 unsigned long long int target, primes[1000000];
@@ -38,7 +40,7 @@ int main(int argc, char **argv)
 			// And take the square root of THAT (psqt)
 			psqt = (unsigned int)sqrt(sqt);
 			psqt += 10; // just padding things a little
-			printf("Your prize is $%u!!!\n",psqt);
+			//printf("Your prize is $%u!!!\n",psqt);
 			// That's how many primes we need to make sure that that larger group is prime!
 
 			smallsieve = (unsigned char*)malloc(sqt);
