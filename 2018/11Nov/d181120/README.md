@@ -8,17 +8,17 @@ If you enter a 63-bit number, it will return all the primes bewteen the number y
 
 You can redirect the output to a file, to keep those numbers for later:
 
-'''
+```
 $> GaM > lots-of-primes-starting-at-50-billion
 50000000000
 $> wc lots-of-primes-starting-at-50-billion
 lots lots lots*11
-'''
+```
 
 or, as we say in the real world...
 
 
-'''
+```
 user0@ii:~/Desktop/git/dailies/2018/11Nov/d181120$ time ./gam 50000000000000 > primes-from-50-trillion
 
 real	0m0.235s
@@ -39,4 +39,4 @@ sieve requires: 481166 primes
 50000000000903 50000000000941 50000000000959 50000000000963 
 user0@ii:~/Desktop/git/dailies/2018/11Nov/d181120$ 
 
-'''
+```
