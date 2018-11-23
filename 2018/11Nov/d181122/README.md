@@ -17,3 +17,4 @@ verson one that is intuitively faster out of the gate, but does NOT accelerate. 
 
 So for runs of 100 or 1000, Sundaram is (probably - I haven't timed it) hella faster than Eratosthenes.
 But in the areas that interest me (2^30)... JUST noticeably slower (like 20% slower)
+So, fast and steady sort of LOSES the race!

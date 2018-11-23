@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-// this is a billion (2^30) for a reason.  Run it - see how long it takes!
 //define HOWBIG 1073741824
 #define HOWBIG 1048576/2
 // ROOT is the square root of our target (HOWBIG)
