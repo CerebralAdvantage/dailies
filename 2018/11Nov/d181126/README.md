@@ -1,0 +1,3 @@
+# Sieve Factor C
+
+Factors large integers.  From the command line, any positive value up to 2^128-1 (340,282,366,920,938,463,463,374,607,431,768,211,455) may be entered.  The exact size of the integer in question may or may not lead to issues in the Sieved solution.  For instance, any integer 100,000,000,000,000 (100 Trillion) or less, will factor correctly, even if it is a prime number.  Integers greater than 100T may factor correctly (if the largest factor is less than 100T).  But if any factor is > 100T, the Sieve will quietly fail.  And it'll take 5 seconds or more.  The reason for that quirky fail is due to memory restriction on the sieve.  So I adjusted the algorithm with a silent cutoff.  Which simply makes it a bit of a dysfunctional oddity.  But a fun demo prog.
