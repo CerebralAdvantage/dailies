@@ -9,7 +9,7 @@
 // used one-line gcd - sweet!
 // switched to "one tmp variable" algorithm - much neater
 // no negative rotates
-// smarter comments
+// smarter comments; more DOING
 // tested with node v8.10.0
 
 const { performance } = require('perf_hooks');
